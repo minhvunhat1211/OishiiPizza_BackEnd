@@ -1,0 +1,15 @@
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\bin\Debug\net6.0\oishii_pizza.Domain.deps.json
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\bin\Debug\net6.0\oishii_pizza.Domain.dll
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\bin\Debug\net6.0\oishii_pizza.Domain.pdb
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\bin\Debug\net6.0\oishii_pizza.Infrastructure.dll
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\bin\Debug\net6.0\oishii_pizza.Infrastructure.pdb
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.csproj.AssemblyReference.cache
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.AssemblyInfoInputs.cache
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.AssemblyInfo.cs
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.csproj.CoreCompileInputs.cache
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.csproj.CopyComplete
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.dll
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\refint\oishii_pizza.Domain.dll
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.pdb
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\ref\oishii_pizza.Domain.dll

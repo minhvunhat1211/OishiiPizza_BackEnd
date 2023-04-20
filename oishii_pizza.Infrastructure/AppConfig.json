@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "OiShiiPizza": "Server=.;Database=oishii_pizza;Trusted_Connection=True;User ID=sa; Password=123456"
+  }
+}
