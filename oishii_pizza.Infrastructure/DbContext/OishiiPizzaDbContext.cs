@@ -24,5 +24,6 @@ namespace oishii_pizza.Infrastructure.DbContext
         }
         public DbSet<User> Users { get; set; }
         public DbSet<TypeOfProduct> TypeOfProducts { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

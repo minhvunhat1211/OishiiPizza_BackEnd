@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using oishii_pizza.Infrastructure.DbContext;
 
@@ -11,9 +12,10 @@ using oishii_pizza.Infrastructure.DbContext;
 namespace oishii_pizza.Infrastructure.Migrations
 {
     [DbContext(typeof(OishiiPizzaDbContext))]
-    partial class OishiiPizzaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230421072259_Init_table_Product")]
+    partial class Init_table_Product
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,12 +42,9 @@ namespace oishii_pizza.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Price")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

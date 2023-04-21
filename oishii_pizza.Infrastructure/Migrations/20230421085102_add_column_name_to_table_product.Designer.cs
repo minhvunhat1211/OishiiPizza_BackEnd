@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using oishii_pizza.Infrastructure.DbContext;
 
@@ -11,9 +12,10 @@ using oishii_pizza.Infrastructure.DbContext;
 namespace oishii_pizza.Infrastructure.Migrations
 {
     [DbContext(typeof(OishiiPizzaDbContext))]
-    partial class OishiiPizzaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230421085102_add_column_name_to_table_product")]
+    partial class add_column_name_to_table_product
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
