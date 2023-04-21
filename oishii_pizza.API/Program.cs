@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using oishii_pizza.API;
+using oishii_pizza.Domain.Common.FileStorage;
 using oishii_pizza.Domain.Features.UserService;
 using oishii_pizza.Infrastructure.DbContext;
 using oishii_pizza.Infrastructure.Repositories.UserRepository;
@@ -69,8 +70,18 @@ builder.Services.AddAuthentication(options =>
 
 });
 builder.Services.AddAuthorization();
+builder.Services.RegisterServices();
+/*builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();*/
 
 builder.Services.RegisterServices();
+
+builder.Services.AddTransient<IFileStorageService, FileStorageService>();
+
+//autofac
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -78,6 +89,26 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseAuthentication();
+app.UseRouting();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+
+
+/*if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -103,4 +134,4 @@ app.UseEndpoints(endpoints =>
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
 });
-app.Run();
+app.Run();*/

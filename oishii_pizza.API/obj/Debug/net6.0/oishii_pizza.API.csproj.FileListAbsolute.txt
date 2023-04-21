@@ -71,3 +71,4 @@ D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.API\bin\Debug\net6.0\runtimes\
 D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.API\bin\Debug\net6.0\Humanizer.dll
 D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.API\bin\Debug\net6.0\Autofac.dll

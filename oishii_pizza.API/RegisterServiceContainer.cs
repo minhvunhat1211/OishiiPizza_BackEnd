@@ -1,4 +1,6 @@
-﻿using oishii_pizza.Domain.Features.UserService;
+﻿using oishii_pizza.Domain.Features.TypeOfProductService;
+using oishii_pizza.Domain.Features.UserService;
+using oishii_pizza.Infrastructure.Repositories.TypeOfProductRepository;
 using oishii_pizza.Infrastructure.Repositories.UserRepository;
 
 namespace oishii_pizza.API
@@ -9,7 +11,8 @@ namespace oishii_pizza.API
         {
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();
-
+            services.AddTransient<ITypeOfProductService, TypeOfProductService>();
+            services.AddTransient<ITypeOfProductRepository, TypeOfProductRepository>();
             return services;
         }
     }

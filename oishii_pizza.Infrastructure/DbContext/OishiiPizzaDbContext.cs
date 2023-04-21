@@ -20,7 +20,9 @@ namespace oishii_pizza.Infrastructure.DbContext
         {
             //Configure using Fluent API
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new TypeOfProductConfiguration());
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<TypeOfProduct> TypeOfProducts { get; set; }
     }
 }

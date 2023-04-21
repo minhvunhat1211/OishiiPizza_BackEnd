@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "OpAKqVTOX4BKGENrZmwzs07uK8nvUsWdBHmUOzAjDIBitf2zdWOWZKFew24g2N0flNNrZVzBuaAMlIsi+YsqXQ==",
+  "dgSpecHash": "K9iEAyF8UY21+K0G+YmMiAK500ya8EHSPNIIvSd37wGlfVhHZNXNQgVxWXjyw23UR+c39avEQCYwTJ9ZWjXPzA==",
   "success": true,
   "projectFilePath": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\oishii_pizza.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\autofac\\6.5.0\\autofac.6.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

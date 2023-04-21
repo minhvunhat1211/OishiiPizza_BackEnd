@@ -95,7 +95,6 @@ namespace oishii_pizza.Domain.Features.UserService
 
                 throw;
             }
-            throw new NotImplementedException();
         }
 
         public async Task<ApiResult<PagedResult<UserDTO>>> GetAll(int? pageSize, int? pageIndex, string? search)
@@ -171,7 +170,6 @@ namespace oishii_pizza.Domain.Features.UserService
                     UpdateAt = findUserById.UpdateAt,
                     DeleteAt = findUserById.DeleteAt,
                     Role = findUserById.Role,
-                    Password = findUserById.Password,
                     Status = findUserById.Status
                 };
                 return new ApiSuccessResult<UserDTO>(user);
@@ -187,9 +185,22 @@ namespace oishii_pizza.Domain.Features.UserService
 
         public async Task<ApiResult<LoginResponse>> LoginAsync(LoginRequest loginRequest)
         {
-            var result = await _userRepository.GetByUserNameAsync(loginRequest.Email);
-            //Expression<Func<User, bool>> expression = x => x.Email == loginRequest.Email;
-            //var result = await _userRepository.GetByCondition(expression);
+            /*var result = await _userRepository.GetByUserNameAsync(loginRequest.Email);*/
+            Expression<Func<User, bool>> expression = x => x.Email == loginRequest.Email;
+            var data = await _userRepository.GetByCondition(expression);
+            var result = data.Select(x => new UserDTO()
+            {
+                Email = x.Email,
+                CreateAt = x.CreateAt,
+                UpdateAt = x.UpdateAt,
+                DeleteAt = x.DeleteAt,
+                PhoneNumber = x.PhoneNumber,
+                Id = x.Id,
+                Address = x.Address,
+                Status = x.Status,
+                Role = x.Role,
+                Password = x.Password,
+            }).OrderByDescending(x => x.CreateAt).FirstOrDefault();
             string hashedPass = loginRequest.Password.Hash();
             if (result == null)
             {
