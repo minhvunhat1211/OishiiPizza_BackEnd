@@ -15,6 +15,7 @@ namespace oishii_pizza.Infrastructure.Entities
         public string Description { get; set; }
         public float Price { get; set; }
         public TypeOfProduct TypeOfProduct { get; set; }
+        public ICollection<ProductImg>? ProductImgs { get; set; }
 
     }
 }

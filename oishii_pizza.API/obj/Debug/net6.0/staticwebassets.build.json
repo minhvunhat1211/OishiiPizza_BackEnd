@@ -1,11 +1,88 @@
 {
   "Version": 1,
-  "Hash": "8zJmmNc9p+/Gb5Byb3aWNNohsGaFc1AwxC++sO3+bxo=",
+  "Hash": "jXjz4/ZzhOEAiYwJTxt8z4YAMiBdE3WhIMiiR+nz69A=",
   "Source": "oishii_pizza.API",
   "BasePath": "_content/oishii_pizza.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "oishii_pizza.API\\wwwroot",
+      "Source": "oishii_pizza.API",
+      "ContentRoot": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\",
+      "BasePath": "_content/oishii_pizza.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\product_img\\129939f9-0994-46e9-9b90-8b1f67740bb3.png",
+      "SourceId": "oishii_pizza.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\",
+      "BasePath": "_content/oishii_pizza.API",
+      "RelativePath": "product_img/129939f9-0994-46e9-9b90-8b1f67740bb3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\product_img\\129939f9-0994-46e9-9b90-8b1f67740bb3.png"
+    },
+    {
+      "Identity": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\product_img\\1fb2350f-f159-4f4a-bd29-d551edda1070.png",
+      "SourceId": "oishii_pizza.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\",
+      "BasePath": "_content/oishii_pizza.API",
+      "RelativePath": "product_img/1fb2350f-f159-4f4a-bd29-d551edda1070.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\product_img\\1fb2350f-f159-4f4a-bd29-d551edda1070.png"
+    },
+    {
+      "Identity": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\product_img\\2f1b6202-e91c-4ada-ad6b-32b97d834c66.png",
+      "SourceId": "oishii_pizza.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\",
+      "BasePath": "_content/oishii_pizza.API",
+      "RelativePath": "product_img/2f1b6202-e91c-4ada-ad6b-32b97d834c66.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\product_img\\2f1b6202-e91c-4ada-ad6b-32b97d834c66.png"
+    },
+    {
+      "Identity": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\product_img\\3d1d32f3-9ac4-473c-a4b6-89bafced6760.png",
+      "SourceId": "oishii_pizza.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\",
+      "BasePath": "_content/oishii_pizza.API",
+      "RelativePath": "product_img/3d1d32f3-9ac4-473c-a4b6-89bafced6760.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\product_img\\3d1d32f3-9ac4-473c-a4b6-89bafced6760.png"
+    }
+  ]
 }

@@ -1,13 +1,17 @@
-﻿using oishii_pizza.Domain.Common.APIResponse;
+﻿using Microsoft.AspNetCore.Http;
+using oishii_pizza.Domain.Common.APIResponse;
+using oishii_pizza.Domain.Common.FileStorage;
 using oishii_pizza.Domain.Common.Paging;
 using oishii_pizza.Domain.Models.ProductModels;
 using oishii_pizza.Domain.Models.TypeOfProductModels;
+using oishii_pizza.Domain.Models.UserModels;
 using oishii_pizza.Infrastructure.Entities;
 using oishii_pizza.Infrastructure.Repositories.ProductRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,9 +20,18 @@ namespace oishii_pizza.Domain.Features.ProductService
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-        public ProductService(IProductRepository productRepository)
+        private readonly IFileStorageService _storageService;
+        public ProductService(IProductRepository productRepository, IFileStorageService storageService)
         {
             _productRepository = productRepository;
+            _storageService = storageService;
+        }
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return fileName;
         }
         public async Task<ApiResult<ProductDTO>> CreateAsync(int TypeOfProductId, ProductCreateRequest createRequest)
         {
@@ -33,6 +46,20 @@ namespace oishii_pizza.Domain.Features.ProductService
                     CreateAt = DateTime.Now,
                     Status = 1
                 };
+                var tempImg = new List<ProductImg>();
+                if (createRequest.ProductImgs != null)
+                {
+                    foreach (var img in createRequest.ProductImgs)
+                    {
+                        var productImage = new ProductImg()
+                        {
+                            Caption = newProduct.Name,
+                            ImagePath = await this.SaveFile(img),
+                        };
+                        tempImg.Add(productImage);
+                    }
+                    newProduct.ProductImgs = tempImg;
+                }
                 var data = new ProductDTO()
                 {
                     Id = newProduct.Id,
@@ -44,14 +71,15 @@ namespace oishii_pizza.Domain.Features.ProductService
                     CreateAt = newProduct.CreateAt,
                     UpdateAt = newProduct.UpdateAt,
                     DeleteAt = newProduct.DeleteAt,
+                    ProductImgs = newProduct.ProductImgs
                 };
                 await _productRepository.CreateAsync(newProduct);
                 return new ApiSuccessResult<ProductDTO>(data);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return new ApiErrorResult<ProductDTO>("Loi");
+                return new ApiErrorResult<ProductDTO>(ex.Message);
             }
         }
 
@@ -70,6 +98,40 @@ namespace oishii_pizza.Domain.Features.ProductService
             {
 
                 throw;
+            }
+        }
+
+        public async Task<ApiResult<bool>> EditAsync(int id, ProductEditRequest request)
+        {
+            try
+            {
+                var findProductById = await _productRepository.GetById(id);
+                findProductById.Name = request.Name;
+                findProductById.Description = request.Description;
+                findProductById.Price = request.Price;
+                findProductById.TypeOfProductId = request.TypeOfProductId;
+                findProductById.UpdateAt = DateTime.Now;
+                var tempImg = new List<ProductImg>();
+                if (request.ProductImgs != null)
+                {
+                    foreach (var img in request.ProductImgs)
+                    {
+                        var productImage = new ProductImg()
+                        {
+                            Caption = findProductById.Name,
+                            ImagePath = await this.SaveFile(img),
+                        };
+                        tempImg.Add(productImage);
+                    }
+                    findProductById.ProductImgs = tempImg;
+                }
+                await _productRepository.UpdateAsync(findProductById);
+                return new ApiSuccessResult<bool> { Message = "Thanh cong" };
+            }
+            catch (Exception)
+            {
+
+                return new ApiErrorResult<bool> { Message = "That bai" };
             }
         }
 
@@ -106,6 +168,7 @@ namespace oishii_pizza.Domain.Features.ProductService
                         DeleteAt = x.DeleteAt,
                         Id = x.Id,
                         Status = x.Status,
+                        ProductImgs = x.ProductImgs,
                     }).OrderByDescending(x => x.CreateAt).ToList();
                 var pagedResult = new PagedResult<ProductDTO>()
                 {
@@ -159,6 +222,7 @@ namespace oishii_pizza.Domain.Features.ProductService
                         DeleteAt = x.DeleteAt,
                         Id = x.Id,
                         Status = x.Status,
+                        ProductImgs = x.ProductImgs,
                     }).OrderByDescending(x => x.CreateAt).ToList();
                 var pagedResult = new PagedResult<ProductDTO>()
                 {
@@ -198,7 +262,8 @@ namespace oishii_pizza.Domain.Features.ProductService
                     CreateAt = findProductById.CreateAt,
                     UpdateAt = findProductById.UpdateAt,
                     DeleteAt = findProductById.DeleteAt,
-                    Status = findProductById.Status
+                    Status = findProductById.Status,
+                    ProductImgs = findProductById.ProductImgs,
                 };
                 return new ApiSuccessResult<ProductDTO>(data);
             }

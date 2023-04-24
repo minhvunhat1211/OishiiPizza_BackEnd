@@ -15,7 +15,7 @@ namespace oishii_pizza.API.Controllers
             _productService = productService;
         }
         [HttpPost("create")]
-        public async Task<IActionResult> Create(int TypeOfProductId, ProductCreateRequest request)
+        public async Task<IActionResult> Create(int TypeOfProductId, [FromForm]ProductCreateRequest request)
         {
             try
             {
@@ -77,6 +77,27 @@ namespace oishii_pizza.API.Controllers
             {
                 return BadRequest();
             }
+        }
+        [HttpPut("edit")]
+        public async Task<IActionResult> Edit(int id, [FromForm] ProductEditRequest request)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                var result = await _productService.EditAsync(id, request);
+                if (result.IsSuccessed)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+                throw;
+            }
+
         }
     }
 }

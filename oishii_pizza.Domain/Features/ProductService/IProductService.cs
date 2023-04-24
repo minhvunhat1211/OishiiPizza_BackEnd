@@ -16,5 +16,8 @@ namespace oishii_pizza.Domain.Features.ProductService
         public Task<ApiResult<ProductDTO>> GetByIdAsync(int id);
         public Task<ApiResult<PagedResult<ProductDTO>>> GetAll(int? pageSize, int? pageIndex, string? search);
         public Task<ApiResult<PagedResult<ProductDTO>>> GetAllByTypeOfProductname(int? pageSize, int? pageIndex, string typeOfProductName);
+        public Task<ApiResult<bool>> EditAsync(int id, ProductEditRequest request);
+        public Task<ApiResult<bool>> DeleteAsync(int id);
+        public Task<ApiResult<bool>> UnDeleteAsync(int id);
     }
 }

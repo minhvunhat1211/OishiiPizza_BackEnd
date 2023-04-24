@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using oishii_pizza.Infrastructure.DbContext;
 
@@ -11,9 +12,10 @@ using oishii_pizza.Infrastructure.DbContext;
 namespace oishii_pizza.Infrastructure.Migrations
 {
     [DbContext(typeof(OishiiPizzaDbContext))]
-    partial class OishiiPizzaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230424022101_Init_table_ProductImg")]
+    partial class Init_table_ProductImg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,7 +87,7 @@ namespace oishii_pizza.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImgs", (string)null);
+                    b.ToTable("ProductImg");
                 });
 
             modelBuilder.Entity("oishii_pizza.Infrastructure.Entities.TypeOfProduct", b =>
