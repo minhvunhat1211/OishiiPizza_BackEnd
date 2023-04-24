@@ -65,7 +65,7 @@ namespace oishii_pizza.API.Controllers
             }
         }
         [HttpPut("edit")]
-        public async Task<IActionResult> Edit(int id, TypeOfProductEditRequest resquest)
+        public async Task<IActionResult> Edit(int id, TypeOfProductEditRequest request)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace oishii_pizza.API.Controllers
                 {
                     return BadRequest();
                 }
-                var result = await _typeOfProductService.EditAsync(id, resquest);
+                var result = await _typeOfProductService.EditAsync(id, request);
                 if (result.IsSuccessed)
                     return Ok(result);
                 return BadRequest(result);
@@ -82,6 +82,46 @@ namespace oishii_pizza.API.Controllers
             {
                 return BadRequest(ex.Message);
                 throw;
+            }
+        }
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                var result = await _typeOfProductService.DeleteAsync(id);
+                if (result.IsSuccessed)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest($"Could not delete {id}");
+            }
+        }
+        [HttpDelete("undelete")]
+        public async Task<IActionResult> UnDelete(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                var result = await _typeOfProductService.UnDeleteAsync(id);
+                if (result.IsSuccessed)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest($"Could not un delete {id}");
             }
         }
     }
