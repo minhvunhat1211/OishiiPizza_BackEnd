@@ -5,7 +5,7 @@ using oishii_pizza.Domain.Models.ProductModels;
 
 namespace oishii_pizza.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/product")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -98,6 +98,46 @@ namespace oishii_pizza.API.Controllers
                 throw;
             }
 
+        }
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                var result = await _productService.DeleteAsync(id);
+                if (result.IsSuccessed)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest($"Could not delete {id}");
+            }
+        }
+        [HttpDelete("undelete")]
+        public async Task<IActionResult> UnDelete(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                var result = await _productService.UnDeleteAsync(id);
+                if (result.IsSuccessed)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest($"Could not un delete {id}");
+            }
         }
     }
 }

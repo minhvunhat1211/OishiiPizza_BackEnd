@@ -64,5 +64,21 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\product_img\3d1d32f3-9ac4-473c-a4b6-89bafced6760.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\product_img\c2b362b3-3ea2-4b7a-8f5a-00cd00bd889d.JPG))">
+      <SourceType>Package</SourceType>
+      <SourceId>oishii_pizza.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/oishii_pizza.API</BasePath>
+      <RelativePath>product_img/c2b362b3-3ea2-4b7a-8f5a-00cd00bd889d.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\product_img\c2b362b3-3ea2-4b7a-8f5a-00cd00bd889d.JPG))</OriginalItemSpec>
+    </StaticWebAsset>
   </ItemGroup>
 </Project>

@@ -27,7 +27,7 @@ namespace oishii_pizza.API.Controllers
                 var result = await _userService.LoginAsync(request);
                 if (result.IsSuccessed)
                     return Ok(result);
-                return BadRequest(result);
+                return Ok(result);
             }
             catch (Exception ex)
             {

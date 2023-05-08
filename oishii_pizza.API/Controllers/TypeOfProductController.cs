@@ -6,7 +6,7 @@ using oishii_pizza.Domain.Models.UserModels;
 
 namespace oishii_pizza.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/typeofproduct")]
     [ApiController]
     public class TypeOfProductController : ControllerBase
     {

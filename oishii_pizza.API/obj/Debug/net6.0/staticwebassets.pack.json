@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\product_img\\3d1d32f3-9ac4-473c-a4b6-89bafced6760.png"
     },
     {
+      "Id": "D:\\ki2-nam4\\Prj\\Backend\\oishii_pizza\\oishii_pizza.API\\wwwroot\\product_img\\c2b362b3-3ea2-4b7a-8f5a-00cd00bd889d.JPG",
+      "PackagePath": "staticwebassets\\product_img\\c2b362b3-3ea2-4b7a-8f5a-00cd00bd889d.JPG"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.oishii_pizza.API.props",
       "PackagePath": "build\\oishii_pizza.API.props"
     },
