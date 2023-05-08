@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using oishii_pizza.Infrastructure.DbContext;
 
@@ -11,9 +12,10 @@ using oishii_pizza.Infrastructure.DbContext;
 namespace oishii_pizza.Infrastructure.Migrations
 {
     [DbContext(typeof(OishiiPizzaDbContext))]
-    partial class OishiiPizzaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230508042739_Fix_Table_OrderDetail")]
+    partial class Fix_Table_OrderDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,6 +79,12 @@ namespace oishii_pizza.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime?>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -85,6 +93,12 @@ namespace oishii_pizza.Infrastructure.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

@@ -10,5 +10,7 @@ namespace oishii_pizza.Infrastructure.Repositories.OrderRepository
 {
     public interface IOrderRepository : IBaseRepository<Order>
     {
+        Task<Order> GetByIdOrder(int? orderId);
+        Task<IEnumerable<Order>> GetAllOrder(int? pageSize, int? pageIndex);
     }
 }

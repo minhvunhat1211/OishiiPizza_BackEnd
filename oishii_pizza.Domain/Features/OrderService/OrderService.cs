@@ -38,6 +38,20 @@ namespace oishii_pizza.Domain.Features.OrderService
                     CreateAt = DateTime.Now,
                     Status = 1
                 };
+                var tempOrderDetail = new List<OrderDetail>();
+                if (createRequest.OrderDetails != null)
+                {
+                    foreach (var item in createRequest.OrderDetails)
+                    {
+                        var orderDetail = new OrderDetail()
+                        {
+                            ProductId = item.ProductId,
+                            Quantity = item.Quantity,
+                        };
+                        tempOrderDetail.Add(orderDetail);
+                    }
+                    newOrder.OrderDetails = tempOrderDetail;
+                }
                 var data = new OrderDTO()
                 {
                     Id = newOrder.Id,
@@ -47,6 +61,7 @@ namespace oishii_pizza.Domain.Features.OrderService
                     PhoneNumberCustomer = newOrder.PhoneNumberCustomer,
                     AddressCustomer = newOrder.AddressCustomer,
                     TotalPrice = newOrder.TotalPrice,
+                    OrderDetails = newOrder.OrderDetails,
                     Status = newOrder.Status,
                     CreateAt =  newOrder.CreateAt,
                     UpdateAt = newOrder.UpdateAt,
@@ -114,7 +129,7 @@ namespace oishii_pizza.Domain.Features.OrderService
                     pageIndex = pageIndex.Value;
                 }
                 var totalRow = await _orderRepository.CountAsync();
-                var query = await _orderRepository.GetAll(pageSize, pageIndex);
+                var query = await _orderRepository.GetAllOrder(pageSize, pageIndex);
                 if (!string.IsNullOrEmpty(search))
                 {
                     Expression<Func<Order, bool>> expression = x => x.NameCustomer.Contains(search);
@@ -131,6 +146,7 @@ namespace oishii_pizza.Domain.Features.OrderService
                         Note = x.Note,
                         Title = x.Title,
                         TotalPrice = x.TotalPrice,
+                        OrderDetails = x.OrderDetails,
                         CreateAt = x.CreateAt,
                         UpdateAt = x.UpdateAt,
                         DeleteAt = x.DeleteAt,
@@ -162,7 +178,7 @@ namespace oishii_pizza.Domain.Features.OrderService
         {
             try
             {
-                var findOrderById = await _orderRepository.GetById(id);
+                var findOrderById = await _orderRepository.GetByIdOrder(id);
                 if (findOrderById == null)
                 {
                     return new ApiErrorResult<OrderDTO>("Khong ton tai hoa don");
@@ -176,6 +192,7 @@ namespace oishii_pizza.Domain.Features.OrderService
                     PhoneNumberCustomer = findOrderById.PhoneNumberCustomer,
                     AddressCustomer = findOrderById.AddressCustomer,
                     TotalPrice = findOrderById.TotalPrice,
+                    OrderDetails = findOrderById.OrderDetails,
                     CreateAt = findOrderById.CreateAt,
                     UpdateAt = findOrderById.UpdateAt,
                     DeleteAt = findOrderById.DeleteAt,

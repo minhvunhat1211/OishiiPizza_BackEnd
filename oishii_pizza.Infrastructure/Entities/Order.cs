@@ -16,5 +16,6 @@ namespace oishii_pizza.Infrastructure.Entities
         public string PhoneNumberCustomer { get; set; }
         public string AddressCustomer { get; set; }
         public float TotalPrice { get; set; }
+        public ICollection<OrderDetail>? OrderDetails { get; set; }
     }
 }

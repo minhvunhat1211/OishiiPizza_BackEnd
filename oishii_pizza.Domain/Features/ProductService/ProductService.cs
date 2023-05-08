@@ -148,11 +148,11 @@ namespace oishii_pizza.Domain.Features.ProductService
                     pageIndex = pageIndex.Value;
                 }
                 var totalRow = await _productRepository.CountAsync();
-                var query = await _productRepository.GetAll(pageSize, pageIndex);
+                var query = await _productRepository.GetAllProduct(pageSize, pageIndex);
                 if (!string.IsNullOrEmpty(search))
                 {
                     Expression<Func<Product, bool>> expression = x => x.Name.Contains(search);
-                    query = await _productRepository.GetAll(pageSize, pageIndex, expression);
+                    query = await _productRepository.GetAllProduct(pageSize, pageIndex, expression);
                     totalRow = await _productRepository.CountAsync(expression);
                 }
                 //Paging
@@ -203,7 +203,7 @@ namespace oishii_pizza.Domain.Features.ProductService
                     pageIndex = pageIndex.Value;
                 }
                 Expression<Func<Product, bool>> expression = x => x.TypeOfProduct.Name == typeOfProductName;
-                var query = await _productRepository.GetAll(pageSize, pageIndex, expression);
+                var query = await _productRepository.GetAllProduct(pageSize, pageIndex, expression);
                 var totalRow = await _productRepository.CountAsync(expression);
                 if (totalRow == 0)
                 {
@@ -248,7 +248,7 @@ namespace oishii_pizza.Domain.Features.ProductService
         {
             try
             {
-                var findProductById = await _productRepository.GetById(id);
+                var findProductById = await _productRepository.GetByIdProduct(id);
                 if (findProductById == null)
                 {
                     return new ApiErrorResult<ProductDTO>("Khong ton tai san pham");

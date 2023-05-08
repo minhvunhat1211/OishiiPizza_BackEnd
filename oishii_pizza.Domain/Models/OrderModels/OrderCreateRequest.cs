@@ -1,4 +1,6 @@
-﻿using System;
+﻿using oishii_pizza.Domain.Models.OrderDetailModels;
+using oishii_pizza.Infrastructure.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +16,6 @@ namespace oishii_pizza.Domain.Models.OrderModels
         public string PhoneNumberCustomer { get; set; }
         public string AddressCustomer { get; set; }
         public float TotalPrice { get; set; }
+        public ICollection<OrderDetailCreateRequest> OrderDetails { get; set; }
     }
 }
