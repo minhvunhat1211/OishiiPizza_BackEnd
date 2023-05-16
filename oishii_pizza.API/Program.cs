@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using oishii_pizza.API;
@@ -81,8 +82,19 @@ builder.Services.AddTransient<IFileStorageService, FileStorageService>();
 //autofac
 
 
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
 
 var app = builder.Build();
+//multi lang cfg
+
+var supportedCultures = new[] { "vi", "en"  };
+var localizationOptions =
+    new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 // Configure the HTTP request pipeline.
 /*if (app.Environment.IsDevelopment())

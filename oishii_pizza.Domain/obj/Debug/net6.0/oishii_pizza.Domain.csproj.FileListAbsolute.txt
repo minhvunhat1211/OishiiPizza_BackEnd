@@ -13,3 +13,8 @@ D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii
 D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\refint\oishii_pizza.Domain.dll
 D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.pdb
 D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\ref\oishii_pizza.Domain.dll
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.csproj.GenerateResource.cache
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.Resources.Resource.resources
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\bin\Debug\net6.0\en\oishii_pizza.Domain.resources.dll
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\oishii_pizza.Domain.Resources.Resource.en.resources
+D:\ki2-nam4\Prj\Backend\oishii_pizza\oishii_pizza.Domain\obj\Debug\net6.0\en\oishii_pizza.Domain.resources.dll

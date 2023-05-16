@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using oishii_pizza.Domain.Common.APIResponse;
 using oishii_pizza.Domain.Common.HashPass;
@@ -21,10 +22,12 @@ namespace oishii_pizza.Domain.Features.UserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
-        public UserService(IUserRepository userRepository, IConfiguration configuration)
+        /*private readonly IStringLocalizer<Resources.Resource> _stringLocalizer;*/
+        public UserService(IUserRepository userRepository, IConfiguration configuration /*IStringLocalizer<Resources.Resource> userServiceLocalizer*/)
         {
             _userRepository = userRepository;
             _configuration = configuration;
+            /*_stringLocalizer = userServiceLocalizer;*/
         }
 
         public async Task<ApiResult<UserDTO>> CreateAsync(CreateRequest createRequest)
@@ -33,7 +36,7 @@ namespace oishii_pizza.Domain.Features.UserService
             var check = await _userRepository.GetByUserNameAsync(createRequest.Email);
             if (check != null)
             {
-                return new ApiErrorResult<UserDTO>("Tai khoan da ton tai");
+                return new ApiErrorResult<UserDTO>(Resources.Resource.emailExist);
             }
             string hashedPass = createRequest.Password.Hash();
             var newUser = new User()
@@ -67,10 +70,10 @@ namespace oishii_pizza.Domain.Features.UserService
             {
                 var findUserById = await _userRepository.GetById(id);
                 if (findUserById.Status != 1)
-                    return new ApiErrorResult<bool> { Message = "Tai khoan da duoc xoa" };
+                    return new ApiErrorResult<bool> { Message = Resources.Resource.hasDel };
                 findUserById.Status = 2;
                 await _userRepository.UpdateAsync(findUserById);
-                return new ApiSuccessResult<bool> { Message = "Xoa thanh cong"};
+                return new ApiSuccessResult<bool> { Message = Resources.Resource.successMsg};
             }
             catch (Exception)
             {
@@ -84,11 +87,22 @@ namespace oishii_pizza.Domain.Features.UserService
             try
             {
                 var findUserById = await _userRepository.GetById(id);
-                findUserById.PhoneNumber = request.PhoneNumber;
-                findUserById.Address = request.Address;
-                findUserById.UpdateAt = DateTime.Now;
-                await _userRepository.UpdateAsync(findUserById);
-                return new ApiSuccessResult<bool> { Message = "Thanh cong"};
+                Expression<Func<User, bool>> expression = x => x.Email == request.Email;
+                var check = await _userRepository.GetByCondition(expression);
+                if (check.Count == 0 || check.FirstOrDefault().Id == id)
+                {
+                    findUserById.PhoneNumber = request.PhoneNumber;
+                    findUserById.Address = request.Address;
+                    findUserById.Role = request.Role;
+                    findUserById.Email = request.Email;
+                    findUserById.UpdateAt = DateTime.Now;
+                    await _userRepository.UpdateAsync(findUserById);
+                    return new ApiSuccessResult<bool> { Message = Resources.Resource.successMsg };
+                }
+                else
+                {
+                    return new ApiErrorResult<bool> { Message = Resources.Resource.emailExist };
+                }
             }
             catch (Exception)
             {
@@ -100,7 +114,7 @@ namespace oishii_pizza.Domain.Features.UserService
         public async Task<ApiResult<PagedResult<UserDTO>>> GetAll(int? pageSize, int? pageIndex, string? search)
         {
             try
-            {
+           {
                 if (pageSize != null)
                 {
                     pageSize = pageSize.Value;
@@ -140,14 +154,14 @@ namespace oishii_pizza.Domain.Features.UserService
                 };
                 if (pagedResult == null)
                 {
-                    return new ApiErrorResult<PagedResult<UserDTO>>("Khong co data");
+                    return new ApiErrorResult<PagedResult<UserDTO>>(Resources.Resource.dataNotExist);
                 }
                 return new ApiSuccessResult<PagedResult<UserDTO>>(pagedResult);
             }
             catch (Exception)
             {
 
-                return new ApiErrorResult<PagedResult<UserDTO>>("Loi");
+                return new ApiErrorResult<PagedResult<UserDTO>>(Resources.Resource.fail);
             }
         }
 
@@ -158,7 +172,7 @@ namespace oishii_pizza.Domain.Features.UserService
                 var findUserById = await _userRepository.GetById(id);
                 if (findUserById == null)
                 {
-                    return new ApiErrorResult<UserDTO>("Khong ton tai user");
+                    return new ApiErrorResult<UserDTO>(Resources.Resource.dataNotExist);
                 }
                 var user = new UserDTO()
                 {
@@ -202,13 +216,15 @@ namespace oishii_pizza.Domain.Features.UserService
                 Password = x.Password,
             }).OrderByDescending(x => x.CreateAt).FirstOrDefault();
             string hashedPass = loginRequest.Password.Hash();
+            /*var wrongPassOrUsername = _stringLocalizer["wrongPass"];*/
+            var wrongPassOrUsername = Resources.Resource.wrongPass;
             if (result == null)
             {
-                return new ApiErrorResult<LoginResponse>("Sai tai khoan hoac mat khau");
+                return new ApiErrorResult<LoginResponse>(wrongPassOrUsername);
             }
             if (result.Password != hashedPass)
             {
-                return new ApiErrorResult<LoginResponse>("Sai tai khoan hoac mat khau");
+                return new ApiErrorResult<LoginResponse>(wrongPassOrUsername);
             }
             var authClaim = new List<Claim>
             {
@@ -241,10 +257,10 @@ namespace oishii_pizza.Domain.Features.UserService
             {
                 var findUserById = await _userRepository.GetById(id);
                 if (findUserById.Status != 2)
-                    return new ApiErrorResult<bool> { Message = "Tai khoan khong phai trang thai xoa" };
+                    return new ApiErrorResult<bool> { Message = Resources.Resource.hasRecover };
                 findUserById.Status = 1;
                 await _userRepository.UpdateAsync(findUserById);
-                return new ApiSuccessResult<bool> { Message = "Khoi phuc thanh cong" };
+                return new ApiSuccessResult<bool> { Message = Resources.Resource.successMsg };
             }
             catch (Exception)
             {
